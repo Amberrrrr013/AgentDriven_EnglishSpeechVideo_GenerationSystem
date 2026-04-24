@@ -1099,23 +1099,19 @@
                         语音设置
                     </div>
                     
-                    <div class="form-group">
+                                        <div class="form-group">
                         <label>语音合成方法</label>
                         <div class="radio-group">
                             <div class="radio-option">
-                                <input type="radio" name="tts_method" id="tts_piper" value="piper" checked>
-                                <label for="tts_piper">Piper TTS</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" name="tts_method" id="tts_xtts" value="xtts">
-                                <label for="tts_xtts">XTTS 音色模仿</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" name="tts_method" id="tts_minimax" value="minimax">
+                                <input type="radio" name="tts_method" id="tts_minimax" value="minimax" checked>
                                 <label for="tts_minimax">MiniMax TTS</label>
                             </div>
                             <div class="radio-option">
                                 <input type="radio" name="tts_method" id="tts_kokoro" value="kokoro">
+                                <label for="tts_kokoro">Kokoro TTS</label>
+                            </div>
+                        </div>
+                    </div>kokoro">
                                 <label for="tts_kokoro">Kokoro TTS</label>
                             </div>
                         </div>
@@ -1265,12 +1261,8 @@
                         <label>唇音同步方法</label>
                         <div class="radio-group">
                             <div class="radio-option">
-                                <input type="radio" name="video_method" id="video_wav2lip" value="wav2lip" checked>
-                                <label for="video_wav2lip">Wav2Lip (快速)</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" name="video_method" id="video_sadtalker" value="sadtalker">
-                                <label for="video_sadtalker">SadTalker (精细)</label>
+                                <input type="radio" name="video_method" id="video_sadtalker" value="sadtalker" checked>
+                                <label for="video_sadtalker">SadTalker</label>
                             </div>
                         </div>
                     </div>
@@ -1594,15 +1586,7 @@
                             <label>语音合成</label>
                             <div class="radio-group">
                                 <div class="radio-option">
-                                    <input type="radio" name="agent_tts" id="agent_tts_piper" value="piper" checked>
-                                    <label for="agent_tts_piper">Piper TTS</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" name="agent_tts" id="agent_tts_xtts" value="xtts">
-                                    <label for="agent_tts_xtts">XTTS 音色克隆</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" name="agent_tts" id="agent_tts_minimax" value="minimax">
+                                    <input type="radio" name="agent_tts" id="agent_tts_minimax" value="minimax" checked>
                                     <label for="agent_tts_minimax">MiniMax TTS</label>
                                 </div>
                                 <div class="radio-option">
@@ -1726,16 +1710,8 @@
                             <label>视频生成方法</label>
                             <div class="radio-group">
                                 <div class="radio-option">
-                                    <input type="radio" name="agent_video" id="agent_video_wav2lip" value="wav2lip" checked>
-                                    <label for="agent_video_wav2lip">Wav2Lip (快速)</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" name="agent_video" id="agent_video_sadtalker" value="sadtalker">
-                                    <label for="agent_video_sadtalker">SadTalker (高质量)</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" name="agent_video" id="agent_video_api" value="api">
-                                    <label for="agent_video_api">API (暂不可用)</label>
+                                    <input type="radio" name="agent_video" id="agent_video_sadtalker" value="sadtalker" checked>
+                                    <label for="agent_video_sadtalker">SadTalker</label>
                                 </div>
                             </div>
                         </div>
@@ -1881,7 +1857,7 @@
                 image_source: null,
                 image_prompt: '',
                 enhance_image: true,
-                tts_method: 'piper',
+                tts_method: 'minimax',
                 minimax_voice_id: 'English_Graceful_Lady',
                 reference_audio: null,
                 wer_threshold: 15,
@@ -2185,17 +2161,9 @@
                     <!-- TTS语音合成选项 -->
                     <div style="margin-bottom: 15px;">
                         <div style="color: #00d9ff; font-size: 0.9em; margin-bottom: 8px;">🔊 语音合成方式</div>
-                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px;">
                             <label style="cursor: pointer; padding: 8px; background: rgba(0,255,136,0.1); border-radius: 6px; border: 1px solid rgba(0,255,136,0.3); text-align: center;">
-                                <input type="radio" name="agent_tts_method" value="piper" checked style="margin-right: 3px;">
-                                <span style="color: #00ff88;">Piper</span>
-                            </label>
-                            <label style="cursor: pointer; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                                <input type="radio" name="agent_tts_method" value="xtts" style="margin-right: 3px;">
-                                <span style="color: #ff6b6b;">XTTS</span>
-                            </label>
-                            <label style="cursor: pointer; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                                <input type="radio" name="agent_tts_method" value="minimax" style="margin-right: 3px;">
+                                <input type="radio" name="agent_tts_method" value="minimax" checked style="margin-right: 3px;">
                                 <span style="color: #00d9ff;">MiniMax</span>
                             </label>
                             <label style="cursor: pointer; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
@@ -4161,14 +4129,14 @@
                 { step: 1, msg: `✅ 文本生成完成 | 主题: ${state.config.topic || '用户输入'} | 难度: ${state.config.difficulty}`, delay: 600, success: true },
                 { step: 2, msg: soundonly ? '⏭️ 步骤2: 已跳过（仅生成音频）' : '🖼️ 步骤2: 图像处理中...', delay: 600 },
                 { step: 2, msg: soundonly ? '✅ 图像处理已跳过' : `✅ 图像处理完成 ${state.config.enhance_image ? '(GFPGAN增强)' : ''}`, delay: 500, success: true },
-                { step: 3, msg: `🎙️ 步骤3: 语音合成 (${useXtts ? 'XTTS音色克隆' : 'Piper TTS'})...`, delay: 1500 },
+                { step: 3, msg: `🎙️ 步骤3: 语音合成 (${state.config.tts_method === 'kokoro' ? 'Kokoro TTS' : 'MiniMax TTS'})...`, delay: 1500 },
                 { step: 3, msg: `✅ 语音合成完成 | WER=${werScore}% | 时长: ${(textLength/150).toFixed(1)}s`, delay: 500, success: true }
             ];
             
             // 视频模式需要额外步骤
             if (!soundonly) {
                 steps.push(
-                    { step: 4, msg: `🎬 步骤4: 视频生成 (${useSadTalker ? 'SadTalker高质量' : 'Wav2Lip快速'})...`, delay: 2000 },
+                    { step: 4, msg: `🎬 步骤4: 视频生成 (SadTalker)...`, delay: 2000 },
                     { step: 4, msg: `✅ 视频生成完成 | 分辨率: 512x512 | 时长: ${(textLength/150).toFixed(1)}s`, delay: 500, success: true },
                     { step: 5, msg: '📝 步骤5: 字幕生成中...', delay: 600 },
                     { step: 5, msg: '✅ 字幕生成完成 | 已生成SRT字幕文件', delay: 500, success: true }

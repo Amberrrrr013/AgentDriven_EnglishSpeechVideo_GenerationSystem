@@ -37,9 +37,9 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 │   │
 │   ├── models/                   # 核心模块
 │   │   ├── text/__init__.py      # 文本生成（GLM/MiniMax/本地）
-│   │   ├── tts/__init__.py       # 语音合成（Piper/XTTS/MiniMax/Kokoro）
+│   │   ├── tts/__init__.py       # 语音合成（MiniMax/Kokoro）
 │   │   ├── image/__init__.py     # 图像处理（上传/摄像头/URL/AI生成）
-│   │   ├── video/__init__.py     # 视频生成（Wav2Lip/SadTalker）
+│   │   ├── video/__init__.py     # 视频生成（SadTalker）
 │   │   └── video_editor.py       # 视频剪辑（FFmpeg字幕烧录）
 │   │
 │   ├── frontend/                 # 前端界面
@@ -50,11 +50,8 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 │   ├── output/                   # 生成输出目录
 │   └── requirements.txt          # Python依赖
 │
-├── piper-tts                     # Piper TTS本地模型
-├── xtts-v2                       # XTTS V2音色克隆模型
-├── kokoro-tts                    # Kokoro TTS本地模型（新增）
+├── kokoro-tts                    # Kokoro TTS本地模型
 ├── faster-whisper                # Faster Whisper语音识别
-├── wav2lip                       # Wav2Lip唇形同步
 ├── sadtalker                     # SadTalker头部动画
 └── gfpgan                        # GFPGAN图像增强
 ```
@@ -88,8 +85,6 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 | 方法 | 类型 | 说明 |
 |------|------|------|
 | **Kokoro** | 本地 | 82M参数，CPU即可运行，速度极快，音质好 |
-| **Piper** | 本地 | 固定模型，快速生成 |
-| **XTTS V2** | 本地 | 音色克隆，需参考音频 |
 | **MiniMax** | 在线 | speech-2.8-hd 模型，多种音色可选 |
 
 **Kokoro 可用音色**:
@@ -121,7 +116,6 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 | 方法 | 类型 | 说明 |
 |------|------|------|
 | **SadTalker** | 本地 | 高质量头部动画 |
-| **Wav2Lip** | 本地 | 快速唇形同步 |
 
 **SadTalker参数**:
 - `--fp16`: 启用FP16混合精度加速
@@ -168,7 +162,7 @@ API_CONFIG = {
         "base_url": "https://api.minimaxi.com/v1"
     },
     "tts_api": {
-        "provider": "minimax",  # minimax / kokoro / piper / xtts
+        "provider": "minimax",  # minimax / kokoro
         "api_key": "你的密钥",
         "voice_id": "English_Graceful_Lady"  # MiniMax音色
     },
@@ -229,11 +223,9 @@ API_CONFIG = {
 
 | 模型 | 路径 | 用途 |
 |------|------|------|
-| Kokoro TTS | `D:\_BiShe\kokoro-tts\` | 本地快速TTS（新增） |
-| Piper TTS | `D:\_BiShe\piper-tts\` | 本地固定音色TTS |
-| XTTS V2 | `D:\_BiShe\xtts-v2\` | 音色克隆TTS |
+| Kokoro TTS | `D:\_BiShe\kokoro-tts\` | 本地快速TTS |
+| MiniMax TTS | 在线API | 多种音色可选 |
 | Faster Whisper | `D:\_BiShe\faster-whisper\` | 语音识别/WER检测 |
-| Wav2Lip | `D:\_BiShe\wav2lip\` | 唇形同步视频 |
 | SadTalker | `D:\_BiShe\sadtalker\` | 头部动画视频 |
 | GFPGAN | `D:\_BiShe\gfpgan\` | 图像超分辨率增强 |
 
@@ -249,21 +241,20 @@ API_CONFIG = {
 
 2. **FFmpeg**: 视频剪辑功能需要安装ffmpeg并添加到PATH
 
-3. **GPU**: 建议使用NVIDIA GPU以加速SadTalker/Wav2Lip/XTTS推理
+3. **GPU**: 建议使用NVIDIA GPU以加速SadTalker推理
 
 4. **图片库**: `image_library/` 文件夹可存放任意数量头像图片
 
 5. **TTS选择建议**:
    - 默认使用 Kokoro（快速、音质好、CPU可运行）
-   - 需要音色克隆时使用 XTTS V2
-   - 在线TTS使用 MiniMax
+   - 在线TTS使用 MiniMax（多种音色可选）
 
 ---
 
 ## 项目特点
 
 - **多模式支持**: 手动、半自动、Agent三种工作模式
-- **多TTS方案**: Kokoro(新增)/Piper/XTTS/MiniMax/Edge
+- **多TTS方案**: Kokoro/MiniMax（本地+在线）
 - **批量生成**: 支持一次性生成多个视频
 - **模块化设计**: 文本、TTS、图像、视频处理分离
 - **LangGraph工作流**: 基于图的状态机，确保流程可靠
