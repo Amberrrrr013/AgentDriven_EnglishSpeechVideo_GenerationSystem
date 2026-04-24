@@ -384,6 +384,3 @@ MIT License
 - [Vosk](https://alphacephei.com/vosk) - 语音识别工具
 - [Wan2.1](https://github.com/Wan-Video/Wan2.1) - 视频生成开源模型
 - [Whisper Tutorial](https://github.com/openai/whisper/tree/main/notebooks) - Whisper官方notebooks教程
-
----
->>>>>>> ff483b7 (Initial commit - AI English Speech Video Generation System)
