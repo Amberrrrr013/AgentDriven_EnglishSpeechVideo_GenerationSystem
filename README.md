@@ -51,7 +51,6 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 │   └── requirements.txt          # Python依赖
 │
 ├── kokoro-tts                    # Kokoro TTS本地模型
-├── faster-whisper                # Faster Whisper语音识别
 ├── sadtalker                     # SadTalker头部动画
 └── gfpgan                        # GFPGAN图像增强
 ```

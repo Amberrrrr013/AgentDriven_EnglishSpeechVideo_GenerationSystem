@@ -1111,10 +1111,6 @@
                                 <label for="tts_kokoro">Kokoro TTS</label>
                             </div>
                         </div>
-                    </div>kokoro">
-                                <label for="tts_kokoro">Kokoro TTS</label>
-                            </div>
-                        </div>
                     </div>
                     
                     <div class="form-group" id="kokoro_voice_group" style="display:none;">
@@ -1684,19 +1680,6 @@
                             </div>
                         </div>
                         
-                        <div class="form-group" id="agent_xtts_ref_group" style="display:none;">
-                            <label>XTTS 参考音频</label>
-                            <div class="file-upload-area" id="agent_xtts_dropzone">
-                                <div class="icon">🎵</div>
-                                <div>点击或拖拽上传参考音频</div>
-                                <input type="file" id="agent_xtts_ref" accept="audio/*">
-                            </div>
-                            <div id="agent_xtts_preview" class="preview-item" style="display:none;margin-top:10px;">
-                                <audio id="agent_xtts_audio" controls style="width:100%;"></audio>
-                                <div class="label">参考音频</div>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label for="agent_wer_threshold">WER阈值: <span id="agent_wer_value">15</span>%</label>
                             <div class="slider-group">
@@ -2198,14 +2181,9 @@
                     <!-- 视频生成选项 -->
                     <div style="margin-bottom: 15px;">
                         <div style="color: #00d9ff; font-size: 0.9em; margin-bottom: 8px;">🎬 视频生成方式</div>
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
-                            <label style="cursor: pointer; padding: 10px; background: rgba(0,255,136,0.1); border-radius: 6px; border: 1px solid rgba(0,255,136,0.3); text-align: center;">
-                                <input type="radio" name="agent_video_method" value="wav2lip" checked style="margin-right: 5px;">
-                                <span style="color: #00ff88;">Wav2Lip</span>
-                                <div style="font-size: 0.75em; color: #888;">快速稳定</div>
-                            </label>
+                        <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 8px;">
                             <label style="cursor: pointer; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                                <input type="radio" name="agent_video_method" value="sadtalker" style="margin-right: 5px;">
+                                <input type="radio" name="agent_video_method" value="sadtalker" checked style="margin-right: 5px;">
                                 <span style="color: #ff6b6b;">SadTalker</span>
                                 <div style="font-size: 0.75em; color: #888;">高质量 | 需GPU</div>
                             </label>
@@ -2695,10 +2673,10 @@
                 const recommendedModeRadio = document.querySelector('input[name="agent_recommended"]:checked');
                 const recommendedMode = recommendedModeRadio ? recommendedModeRadio.value : 'fast';
                 if (recommendedMode === 'fast') {
-                    selectedTtsMethod = 'piper';
-                    selectedVideoMethod = 'wav2lip';
+                    selectedTtsMethod = 'minimax';
+                    selectedVideoMethod = 'sadtalker';
                 } else {
-                    selectedTtsMethod = 'xtts';
+                    selectedTtsMethod = 'kokoro';
                     selectedVideoMethod = 'sadtalker';
                 }
                 // 推荐配置使用默认图像设置（女性、青年、快乐、办公室）
@@ -2709,10 +2687,10 @@
             } else {
                 // 自定义配置面板激活
                 const ttsMethodRadio = document.querySelector('input[name="agent_tts_method"]:checked');
-                selectedTtsMethod = ttsMethodRadio ? ttsMethodRadio.value : 'piper';
+                selectedTtsMethod = ttsMethodRadio ? ttsMethodRadio.value : 'minimax';
                 
                 const videoMethodRadio = document.querySelector('input[name="agent_video_method"]:checked');
-                selectedVideoMethod = videoMethodRadio ? videoMethodRadio.value : 'wav2lip';
+                selectedVideoMethod = videoMethodRadio ? videoMethodRadio.value : 'sadtalker';
                 
                 // 获取图像模式
                 const imageModeRadio = document.querySelector('input[name="agent_image_mode"]:checked');
@@ -4357,7 +4335,6 @@
         elements.agentTts.forEach(radio => {
             radio.addEventListener('change', (e) => {
                 const method = e.target.value;
-                elements.agentXttsRefGroup.style.display = method === 'xtts' ? 'block' : 'none';
                 elements.agentMinimaxVoiceGroup.style.display = method === 'minimax' ? 'block' : 'none';
                 // Kokoro模式显示音色选择
                 const agentKokoroVoiceGroup = document.getElementById('agent_kokoro_voice_group');
@@ -4408,20 +4385,6 @@
             reader.onload = (e) => {
                 elements.agentPreviewImg.src = e.target.result;
                 elements.agentImagePreview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        });
-        
-        // Agent XTTS参考音频上传
-        elements.agentXttsDropzone.addEventListener('click', () => elements.agentXttsRef.click());
-        elements.agentXttsRef.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                elements.agentXttsAudio.src = e.target.result;
-                elements.agentXttsPreview.style.display = 'block';
             };
             reader.readAsDataURL(file);
         });
@@ -4540,10 +4503,6 @@
                 requestData.image_api_provider = elements.agentImageApiSelector.value;
             }
             
-            if (ttsMethod === 'xtts' && elements.agentXttsRef.files[0]) {
-                requestData.reference_audio = await uploadAgentXttsAudio();
-            }
-
             if (ttsMethod === 'minimax') {
                 requestData.minimax_voice_id = elements.agentMinimaxVoiceSelect.value;
             }
