@@ -87,9 +87,9 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 
 | 方法 | 类型 | 说明 |
 |------|------|------|
-| **Kokoro** | 本地 | 新增！82M参数，CPU即可运行，速度极快，音质好，不可商用 |
+| **Kokoro** | 本地 | 82M参数，CPU即可运行，速度极快，音质好 |
 | **Piper** | 本地 | 固定模型，快速生成 |
-| **XTTS V2** | 本地 | 音色克隆，需参考音频，非商业授权 |
+| **XTTS V2** | 本地 | 音色克隆，需参考音频 |
 | **MiniMax** | 在线 | speech-2.8-hd 模型，多种音色可选 |
 
 **Kokoro 可用音色**:
@@ -120,7 +120,7 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 
 | 方法 | 类型 | 说明 |
 |------|------|------|
-| **SadTalker** | 本地 | 高质量头部动画，支持FP16加速（1.5-1.8倍） |
+| **SadTalker** | 本地 | 高质量头部动画 |
 | **Wav2Lip** | 本地 | 快速唇形同步 |
 
 **SadTalker参数**:
@@ -142,14 +142,14 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 ### 1. 安装依赖
 
 ```bash
-cd D:\_BiShe\demo_1
+cd 当前系统框架文件夹地址
 pip install -r requirements.txt
 ```
 
 ### 2. 启动系统
-
+手动点击启动该服务器.bat或者：
 ```bash
-cd D:\_BiShe\demo_1
+cd 当前系统框架文件夹地址
 python server.py
 ```
 
