@@ -108,7 +108,7 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 - 表情: happy / sad / angry / passionate / calm / surprised
 - 背景: classroom / nature / office / park / beach / city / library / starry
 
-**GFPGAN超采样**: 可选增强图像清晰度（2倍放大）
+**GFPGAN超采样**: 可选增强图像清晰度
 
 ### 5. 图生视频
 
@@ -116,7 +116,7 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 |------|------|------|
 | **SadTalker** | 本地 | 高质量头部动画 |
 
-**SadTalker参数**:
+**SadTalker参数（根据主机性能可选）**:
 - `--fp16`: 启用FP16混合精度加速
 - `--batch_size 4`: 提升并行处理能力
 - `--enhancer None`: 禁用GFPGAN（节省时间）
@@ -135,18 +135,19 @@ AgentDriven_EnglishSpeechVideo_GenerationSystem/
 ### 1. 安装依赖
 
 ```bash
-cd 当前系统框架文件夹地址
+cd "当前系统框架文件夹地址"
 pip install -r requirements.txt
 ```
 
 ### 2. 启动系统
 手动点击启动该服务器.bat或者：
 ```bash
-cd 当前系统框架文件夹地址
+cd "当前系统框架文件夹地址"
 python server.py
 ```
 
 前端界面地址: http://localhost:5000/frontend
+也可以通过 打开前端页面.bat 打开
 
 ### 3. 配置API密钥
 
